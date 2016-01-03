@@ -7,6 +7,7 @@ function love.load()
     image       = love.graphics.newImage 'mushroom walk.png',
     frameWidth  = 64,
     frameHeight = 64,
+    stopAtEnd   = true,
     frames      = {
       {1, 1, 4, 1, .1},
     },
@@ -16,6 +17,10 @@ end
 
 function love.update(dt)
   testSprite:update(dt)
+end
+
+function love.keypressed(key)
+  if key == 'escape' then love.event.quit() end
 end
 
 function love.draw()
