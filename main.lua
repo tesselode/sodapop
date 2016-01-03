@@ -4,10 +4,11 @@ function love.load()
 
   testSprite = lib.newSprite(100, 200)
   testSprite:addAnimation('main', {
-    image       = love.graphics.newImage 'mushroom walk.png',
-    frameWidth  = 64,
-    frameHeight = 64,
-    frames      = {
+    image        = love.graphics.newImage 'mushroom walk.png',
+    frameWidth   = 64,
+    frameHeight  = 64,
+    stopAtEnd    = true,
+    frames       = {
       {1, 1, 4, 1, .1},
     },
   })

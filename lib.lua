@@ -19,11 +19,19 @@ function Animation:addFrames(x1, y1, x2, y2, duration)
 end
 
 function Animation:advance()
-  self.current = self.current + 1
-  if self.current > #self.frames then
-    self.current = 1
+  if self.current == #self.frames then
+    self:onReachedEnd()
+    if self.stopAtEnd then
+      self.playing = false
+    else
+      self.current = 1
+    end
+  else
+    self.current = self.current + 1
   end
-  self.timer = self.timer + self.frames[self.current].duration
+  if self.playing then
+    self.timer = self.timer + self.frames[self.current].duration
+  end
 end
 
 function Animation:goToFrame(frame)
@@ -37,6 +45,9 @@ function Animation:update(dt)
     self.timer = self.timer - dt
     while self.timer < 0 do
       self:advance()
+      if not self.playing then
+        break
+      end
     end
   end
 end
@@ -47,11 +58,13 @@ end
 
 local function newAnimation(parameters)
   local animation = {
-    image       = parameters.image,
-    frameWidth  = parameters.frameWidth,
-    frameHeight = parameters.frameHeight,
-    frames      = {},
-    loop        = parameters.loop or true,
+    image        = parameters.image,
+    frameWidth   = parameters.frameWidth,
+    frameHeight  = parameters.frameHeight,
+    stopAtEnd    = parameters.stopAtEnd,
+    onReachedEnd = parameters.onReachedEnd or function() end,
+    frames       = {},
+
     playing     = true,
     current     = 1,
   }
