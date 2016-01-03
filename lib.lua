@@ -61,8 +61,12 @@ function Animation:update(dt)
   end
 end
 
-function Animation:draw(x, y)
-  love.graphics.draw(self.image, self.frames[self.current].quad, x, y)
+function Animation:draw(x, y, r, sx, sy, flipX, flipY)
+  if flipX then sx = -sx end
+  if flipY then sy = -sy end
+
+  love.graphics.draw(self.image, self.frames[self.current].quad, x, y,
+    r, sx, sy, self.frameWidth / 2, self.frameHeight / 2)
 end
 
 local function newAnimation(parameters)
@@ -106,15 +110,22 @@ function Sprite:update(dt)
 end
 
 function Sprite:draw()
-  love.graphics.setColor(255, 255, 255)
-  self.current:draw(self.x, self.y)
+  love.graphics.setColor(self.color)
+  self.current:draw(self.x, self.y, self.r, self.sx, self.sy, self.flipX,
+    self.flipY)
 end
 
 local function newSprite(x, y)
   local sprite = {
+    animations = {},
     x          = x,
     y          = y,
-    animations = {},
+    r          = 0,
+    sx         = 1,
+    sy         = 1,
+    flipX      = false,
+    flipY      = false,
+    color      = {255, 255, 255, 255},
   }
   setmetatable(sprite, {__index = Sprite})
   return sprite
