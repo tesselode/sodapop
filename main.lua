@@ -2,7 +2,7 @@ function love.load()
   inspect = require 'inspect'
   lib = require 'lib'
 
-  testSprite = lib.newSprite(100, 200)
+  testSprite = lib.newAnimatedSprite(100, 200)
   testSprite:addAnimation('walk', {
     image        = love.graphics.newImage 'mushroom walk.png',
     frameWidth   = 64,
@@ -35,6 +35,9 @@ function love.load()
   testSprite:setAnchor(function()
     return love.mouse.getX(), love.mouse.getY()
   end)
+
+  anotherSprite = lib.newSprite(love.graphics.newImage 'mushroom.png',
+    100, 300)
 end
 
 function love.update(dt)
@@ -65,4 +68,5 @@ end
 
 function love.draw()
   testSprite:draw()
+  anotherSprite:draw()
 end

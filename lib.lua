@@ -140,6 +140,20 @@ local function newSprite(x, y)
   return sprite
 end
 
+local function newStaticSprite(image, x, y)
+  local sprite = newSprite(x, y)
+  sprite:addAnimation('main', {
+    image       = image,
+    frameWidth  = image:getWidth(),
+    frameHeight = image:getHeight(),
+    frames      = {
+      {1, 1, 1, 1, 1},
+    },
+  })
+  return sprite
+end
+
 return {
-  newSprite = newSprite,
+  newSprite         = newStaticSprite,
+  newAnimatedSprite = newSprite,
 }
