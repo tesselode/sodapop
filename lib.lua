@@ -13,9 +13,20 @@ function Sprite:draw(x, y)
 
   x, y = x or self.x, y or self.y
 
+  sx, sy = self.sx, self.sy
+  ox, oy = self.ox, self.oy
+
+  if self.flipX then
+    sx = sx * -1
+    ox = self.image:getWidth() - ox
+  end
+  if self.flipY then
+    sy = sy * -1
+    oy = self.image:getHeight() - oy
+  end
+
   love.graphics.setColor(self.color)
-  love.graphics.draw(self.image, x, y, self.r, self.sx, self.sy, self.ox,
-    self.oy, self.kx, self.ky)
+  love.graphics.draw(self.image, x, y, self.r, sx, sy, ox, oy, self.kx, self.ky)
 end
 
 local function newSprite(image, x, y)
@@ -31,6 +42,8 @@ local function newSprite(image, x, y)
     kx = 0,
     ky = 0,
     color = {255, 255, 255},
+    flipX = false,
+    flipY = false,
   }
   setmetatable(sprite, {__index = Sprite})
   return sprite
