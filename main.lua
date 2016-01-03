@@ -2,16 +2,18 @@ function love.load()
   lib = require 'lib'
   inspect = require 'inspect'
 
-  testSprite = lib.newSprite()
+  testSprite = lib.newSprite(100, 200)
   testSprite:addAnimation('main', {
     image       = love.graphics.newImage 'mushroom.png',
-    frameWidth  = 16,
-    frameHeight = 16,
+    frameWidth  = 64,
+    frameHeight = 64,
     frames      = {
       {1, 1, 1, 1, .1},
     },
   })
   testSprite:switch 'main'
+end
 
-  print(inspect(testSprite))
+function love.draw()
+  testSprite:draw()
 end
