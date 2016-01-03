@@ -1,10 +1,22 @@
 local Sprite = {}
 
+function Sprite:setPosition(x, y)
+  self.x, self.y = x, y
+end
+
+function Sprite:setAnchorFunction(f)
+  self.anchorFunction = f
+end
+
 function Sprite:centerOrigin()
   if self.x then self.x = self.x + (self.image:getWidth() / 2 - ox) end
   if self.y then self.y = self.y + (self.image:getHeight() / 2 - oy) end
   self.ox = self.image:getWidth() / 2
   self.oy = self.image:getHeight() / 2
+end
+
+function Sprite:update()
+  if self.anchorFunction then self:setPosition(self:anchorFunction()) end
 end
 
 function Sprite:draw(x, y)
@@ -41,7 +53,7 @@ local function newSprite(image, x, y)
     oy = 0,
     kx = 0,
     ky = 0,
-    color = {255, 255, 255},
+    color = {255, 255, 255, 255},
     flipX = false,
     flipY = false,
   }
