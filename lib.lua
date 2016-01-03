@@ -1,10 +1,10 @@
 local Sprite = {}
 
 function Sprite:centerOrigin()
+  if self.x then self.x = self.x + (self.image:getWidth() / 2 - ox) end
+  if self.y then self.y = self.y + (self.image:getHeight() / 2 - oy) end
   self.ox = self.image:getWidth() / 2
   self.oy = self.image:getHeight() / 2
-  if self.x then self.x = self.x + self.ox end
-  if self.y then self.y = self.y + self.oy end
 end
 
 function Sprite:draw(x, y)
