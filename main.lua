@@ -31,15 +31,10 @@ function love.load()
       {1, 1, 12, 1, .05},
     },
   })
-
-  testSprite.ox, testSprite.oy = 32, 32
 end
 
 function love.update(dt)
   testSprite:update(dt)
-  testSprite.r = testSprite.r + dt
-  testSprite.sx = testSprite.sx + .1 * dt
-  testSprite.sy = testSprite.sy + .2 * dt
 end
 
 function love.keypressed(key)
@@ -52,6 +47,10 @@ function love.keypressed(key)
   end
   if key == 'return' then
     testSprite:switch 'unburrow'
+  end
+
+  if key == 'r' then
+    testSprite:goToFrame(1)
   end
 
   if key == 'left' then testSprite.flipX = true end

@@ -105,6 +105,8 @@ function Sprite:switch(name, resume)
   if resume then else self.current:goToFrame(1) end
 end
 
+function Sprite:goToFrame(frame) self.current:goToFrame(frame) end
+
 function Sprite:update(dt)
   self.current:update(dt)
 end
