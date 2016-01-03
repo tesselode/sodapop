@@ -20,7 +20,17 @@ function love.load()
       {1, 1, 12, 1, .05},
     },
   })
-  testSprite:switch 'walk'
+  testSprite:addAnimation('unburrow', {
+    image        = love.graphics.newImage 'mushroom burrow.png',
+    frameWidth   = 64,
+    frameHeight  = 64,
+    stopAtEnd    = true,
+    reverse      = true,
+    onReachedEnd = function() testSprite:switch 'walk' end,
+    frames       = {
+      {1, 1, 12, 1, .05},
+    },
+  })
 end
 
 function love.update(dt)
@@ -34,6 +44,9 @@ function love.keypressed(key)
 
   if key == 'space' then
     testSprite:switch 'burrow'
+  end
+  if key == 'return' then
+    testSprite:switch 'unburrow'
   end
 end
 

@@ -18,6 +18,14 @@ function Animation:addFrames(x1, y1, x2, y2, duration)
   end
 end
 
+function Animation:reverse()
+  local newFrames = {}
+  for i = #self.frames, 1, -1 do
+    table.insert(newFrames, self.frames[i])
+  end
+  self.frames = newFrames
+end
+
 function Animation:advance()
   if self.current == #self.frames then
     self:onReachedEnd()
@@ -38,6 +46,7 @@ function Animation:goToFrame(frame)
   assert(frame <= #self.frames, 'Frame number out of range')
   self.current = frame
   self.timer   = self.frames[self.current].duration
+  self.playing = true
 end
 
 function Animation:update(dt)
@@ -73,7 +82,7 @@ local function newAnimation(parameters)
   for i = 1, #parameters.frames do
     animation:addFrames(unpack(parameters.frames[i]))
   end
-
+  if parameters.reverse then animation:reverse() end
   animation.timer = animation.frames[1].duration
 
   return animation
@@ -86,9 +95,10 @@ function Sprite:addAnimation(name, parameters)
   if not self.current then self:switch(name) end
 end
 
-function Sprite:switch(name)
+function Sprite:switch(name, resume)
   assert(self.animations[name], 'No animation named '..name)
   self.current = self.animations[name]
+  if resume then else self.current:goToFrame(1) end
 end
 
 function Sprite:update(dt)
