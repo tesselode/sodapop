@@ -31,6 +31,10 @@ function love.load()
       {1, 1, 12, 1, .05},
     },
   })
+
+  testSprite:setAnchor(function()
+    return love.mouse.getX(), love.mouse.getY()
+  end)
 end
 
 function love.update(dt)

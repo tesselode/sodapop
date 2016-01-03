@@ -107,8 +107,15 @@ end
 
 function Sprite:goToFrame(frame) self.current:goToFrame(frame) end
 
+function Sprite:setAnchor(f)
+  self.anchor = f
+end
+
 function Sprite:update(dt)
   self.current:update(dt)
+  if self.anchor then
+    self.x, self.y = self.anchor()
+  end
 end
 
 function Sprite:draw()
