@@ -18,6 +18,20 @@ function love.update(dt)
   testSprite:update(dt)
 end
 
+function love.keypressed(key)
+  if key == 'escape' then
+    love.event.quit()
+  end
+
+  if key == 'return' then
+    testSprite.current:goToFrame(1)
+  end
+
+  if key == 'space' then
+    testSprite.current.playing = false
+  end
+end
+
 function love.draw()
   testSprite:draw()
 end

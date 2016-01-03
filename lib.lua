@@ -26,10 +26,18 @@ function Animation:advance()
   self.timer = self.timer + self.frames[self.current].duration
 end
 
+function Animation:goToFrame(frame)
+  assert(frame <= #self.frames, 'Frame number out of range')
+  self.current = frame
+  self.timer   = self.frames[self.current].duration
+end
+
 function Animation:update(dt)
-  self.timer = self.timer - dt
-  while self.timer < 0 do
-    self:advance()
+  if self.playing then
+    self.timer = self.timer - dt
+    while self.timer < 0 do
+      self:advance()
+    end
   end
 end
 
@@ -44,6 +52,7 @@ local function newAnimation(parameters)
     frameHeight = parameters.frameHeight,
     frames      = {},
     loop        = parameters.loop or true,
+    playing     = true,
     current     = 1,
   }
   setmetatable(animation, {__index = Animation})
