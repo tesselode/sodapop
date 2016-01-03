@@ -21,11 +21,7 @@ end
 function Animation:advance()
   self.current = self.current + 1
   if self.current > #self.frames then
-    if self.stopAtEnd then
-      self.current = self.current - 1
-    else
-      self.current = 1
-    end
+    self.current = 1
   end
   self.timer = self.timer + self.frames[self.current].duration
 end
@@ -46,8 +42,8 @@ local function newAnimation(parameters)
     image       = parameters.image,
     frameWidth  = parameters.frameWidth,
     frameHeight = parameters.frameHeight,
-    stopAtEnd   = parameters.stopAtEnd,
     frames      = {},
+    loop        = parameters.loop or true,
     current     = 1,
   }
   setmetatable(animation, {__index = Animation})
