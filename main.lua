@@ -3,16 +3,24 @@ function love.load()
   lib = require 'lib'
 
   testSprite = lib.newSprite(100, 200)
-  testSprite:addAnimation('main', {
+  testSprite:addAnimation('walk', {
     image        = love.graphics.newImage 'mushroom walk.png',
     frameWidth   = 64,
     frameHeight  = 64,
-    stopAtEnd    = true,
     frames       = {
-      {1, 1, 4, 1, .1},
+      {1, 1, 4, 1, .2},
     },
   })
-  testSprite:switch 'main'
+  testSprite:addAnimation('burrow', {
+    image       = love.graphics.newImage 'mushroom burrow.png',
+    frameWidth  = 64,
+    frameHeight = 64,
+    stopAtEnd   = true,
+    frames      = {
+      {1, 1, 12, 1, .05},
+    },
+  })
+  testSprite:switch 'walk'
 end
 
 function love.update(dt)
@@ -24,12 +32,8 @@ function love.keypressed(key)
     love.event.quit()
   end
 
-  if key == 'return' then
-    testSprite.current:goToFrame(1)
-  end
-
   if key == 'space' then
-    testSprite.current.playing = false
+    testSprite:switch 'burrow'
   end
 end
 
