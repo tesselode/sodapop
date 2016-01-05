@@ -1,3 +1,5 @@
+local sodapop = {}
+
 local Animation = {}
 
 function Animation:addFrames(x1, y1, x2, y2, duration)
@@ -124,7 +126,7 @@ function Sprite:draw()
     self.flipY)
 end
 
-local function newSprite(x, y)
+function sodapop.newAnimatedSprite(x, y)
   local sprite = {
     animations = {},
     x          = x,
@@ -140,8 +142,8 @@ local function newSprite(x, y)
   return sprite
 end
 
-local function newStaticSprite(image, x, y)
-  local sprite = newSprite(x, y)
+function sodapop.newSprite(image, x, y)
+  local sprite = sodapop.newAnimatedSprite(x, y)
   sprite:addAnimation('main', {
     image       = image,
     frameWidth  = image:getWidth(),
@@ -153,7 +155,4 @@ local function newStaticSprite(image, x, y)
   return sprite
 end
 
-return {
-  newSprite         = newStaticSprite,
-  newAnimatedSprite = newSprite,
-}
+return sodapop
