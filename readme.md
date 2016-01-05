@@ -151,3 +151,4 @@ Sprites have a number of properties you can set.
 - `flipX` (boolean, default=`false`) - whether the sprite should be flipped horizontally.
 - `flipY` (boolean, default=`false`) - whether the sprite should be flipped vertically.
 - `color` (table, default=`{255, 255, 255, 255}`) - the color the sprite should be drawn with (has the form `{r, g, b, a}`).
+- `playing` (boolean, default=`true`) - whether the current animation should play or not.

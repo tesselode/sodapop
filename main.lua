@@ -63,6 +63,10 @@ function love.keypressed(key)
   if key == 'right' then testSprite.flipX = false end
   if key == 'up' then testSprite.flipY = true end
   if key == 'down' then testSprite.flipY = false end
+
+  if key == 'x' then
+    testSprite.playing = not testSprite.playing
+  end
 end
 
 function love.draw()

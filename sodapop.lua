@@ -1,7 +1,7 @@
 local sodapop = {
-  _VERSION     = 'Sodapop'
-  _DESCRIPTION = 'A sprite and animation library for LÖVE'
-  _URL         = 'https://github.com/tesselode/sodapop'
+  _VERSION     = 'Sodapop',
+  _DESCRIPTION = 'A sprite and animation library for LÖVE',
+  _URL         = 'https://github.com/tesselode/sodapop',
   _LICENSE     = [[
     The MIT License (MIT)
 
@@ -141,7 +141,7 @@ function Sprite:setAnchor(f)
 end
 
 function Sprite:update(dt)
-  self.current:update(dt)
+  if self.playing then self.current:update(dt) end
   if self.anchor then
     self.x, self.y = self.anchor()
   end
@@ -164,6 +164,7 @@ function sodapop.newAnimatedSprite(x, y)
     flipX      = false,
     flipY      = false,
     color      = {255, 255, 255, 255},
+    playing    = true,
   }
   setmetatable(sprite, {__index = Sprite})
   return sprite
