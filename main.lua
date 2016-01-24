@@ -35,6 +35,7 @@ function love.load()
     return love.mouse.getX(), love.mouse.getY()
   end)
 
+
   anotherSprite = sodapop.newSprite(love.graphics.newImage 'mushroom.png',
     100, 300)
 end
@@ -70,6 +71,6 @@ function love.keypressed(key)
 end
 
 function love.draw()
-  testSprite:draw()
+  testSprite:draw(-32, -32)
   anotherSprite:draw()
 end

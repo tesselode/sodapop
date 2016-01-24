@@ -130,9 +130,11 @@ end)
 Updates the sprite.
 - `dt` (number) - the time between the current and previous updates.
 
-### ` sprite:draw() `
+### ` sprite:draw(ox, oy) `
 
 Draws the sprite.
+- `ox` (number, optional) - the horizontal offset to draw the sprite with.
+- `oy` (number, optional) - the vertical offset to draw the sprite with.
 
 ### `sprite = sodapop.newSprite(image, x, y)`
 
