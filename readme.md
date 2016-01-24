@@ -136,6 +136,8 @@ Draws the sprite.
 - `ox` (number, optional) - the horizontal offset to draw the sprite with.
 - `oy` (number, optional) - the vertical offset to draw the sprite with.
 
+__Note__: `ox` and `oy` do not take the scale of the sprite into account. They are merely added on to the sprite's position.
+
 ### `sprite = sodapop.newSprite(image, x, y)`
 
 A shortcut function for creating a sprite with no animation. This function creates a sprite with one animation named "main" with one frame.

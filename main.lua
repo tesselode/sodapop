@@ -71,6 +71,6 @@ function love.keypressed(key)
 end
 
 function love.draw()
-  testSprite:draw(-32, -32)
+  testSprite:draw(32, 32)
   anotherSprite:draw()
 end

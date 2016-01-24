@@ -150,8 +150,8 @@ end
 function Sprite:draw(ox, oy)
   ox, oy = ox or 0, oy or 0
   love.graphics.setColor(self.color)
-  self.current:draw(self.x - ox * self.sx, self.y - oy * self.sy, self.r,
-    self.sx, self.sy, self.flipX, self.flipY)
+  self.current:draw(self.x + ox, self.y + oy, self.r, self.sx, self.sy,
+    self.flipX, self.flipY)
 end
 
 function sodapop.newAnimatedSprite(x, y)
