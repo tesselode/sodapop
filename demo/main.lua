@@ -64,9 +64,11 @@ function love.update(dt)
     mushroom:switch 'unburrow'
   end
 
+  -- link sprite properties to sliders
   mushroom.r = sliders.rotation.value
   mushroom.sx = sliders.sx.value
   mushroom.sy = sliders.sy.value
+
   mushroom:update(dt)
 end
 
