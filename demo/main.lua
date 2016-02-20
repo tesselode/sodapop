@@ -36,6 +36,8 @@ local sliders = {
   sy = {name = 'Vertical scale', value = 1, min = 0, max = 5},
 }
 
+local anchorToMouse = false
+
 function love.update(dt)
   suit.layout:reset(100, 100)
   suit.layout:padding(10, 10)
@@ -52,6 +54,24 @@ function love.update(dt)
     sliders.rotation.value = 0
     sliders.sx.value = 1
     sliders.sy.value = 1
+  end
+
+  -- anchor to mouse toggle
+  if anchorToMouse then
+    local button = suit.Button('Remove anchor', suit.layout:row(300, 30))
+    if button.hit then
+      anchorToMouse = false
+      mushroom:setAnchor()
+      mushroom.x, mushroom.y = 600, 200
+    end
+  else
+    local button = suit.Button('Anchor to mouse', suit.layout:row(300, 30))
+    if button.hit then
+      anchorToMouse = true
+      mushroom:setAnchor(function()
+        return love.mouse.getX(), love.mouse.getY()
+      end)
+    end
   end
 
   -- switch animation buttons
