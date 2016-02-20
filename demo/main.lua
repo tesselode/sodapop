@@ -10,6 +10,25 @@ mushroom:addAnimation('walk', {
     {1, 1, 4, 1, .15}
   }
 })
+mushroom:addAnimation('burrow', {
+  image = love.graphics.newImage 'mushroom burrow.png',
+  frameWidth = 64,
+  frameHeight = 64,
+  stopAtEnd = true,
+  frames = {
+    {1, 1, 12, 1, .05}
+  }
+})
+mushroom:addAnimation('unburrow', {
+  image = love.graphics.newImage 'mushroom burrow.png',
+  frameWidth = 64,
+  frameHeight = 64,
+  reverse = true,
+  onReachedEnd = function() mushroom:switch 'walk' end,
+  frames = {
+    {1, 1, 12, 1, .05}
+  }
+})
 
 local sliders = {
   rotation = {name = 'Rotation', value = 0, min = 0, max = 2 * math.pi},
@@ -34,6 +53,17 @@ function love.update(dt)
     sliders.sx.value = 1
     sliders.sy.value = 1
   end
+
+  -- switch animation buttons
+  local button = suit.Button('Burrow', suit.layout:row(145, 30))
+  if button.hit then
+    mushroom:switch 'burrow'
+  end
+  local button = suit.Button('Unburrow', suit.layout:col(145, 30))
+  if button.hit then
+    mushroom:switch 'unburrow'
+  end
+
   mushroom.r = sliders.rotation.value
   mushroom.sx = sliders.sx.value
   mushroom.sy = sliders.sy.value
