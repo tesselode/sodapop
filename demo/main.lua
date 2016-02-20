@@ -27,6 +27,13 @@ function love.update(dt)
     suit.Slider(slider, suit.layout:row(300, 30))
   end
 
+  -- reset button
+  local button = suit.Button('Reset', suit.layout:row(300, 30))
+  if button.hit then
+    sliders.rotation.value = 0
+    sliders.sx.value = 1
+    sliders.sy.value = 1
+  end
   mushroom.r = sliders.rotation.value
   mushroom.sx = sliders.sx.value
   mushroom.sy = sliders.sy.value
