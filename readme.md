@@ -76,7 +76,7 @@ Adds an animation to the sprite.
 - `frameWidth` (number) - the width of each frame of animation.
 - `frameHeight` (number) - the height of each frame of animation.
 - `stopAtEnd` (boolean, default=`false`) - whether the animation should stop when it reaches the last frame.
-- `onReachedEnd` (function, optional) - a function to call when the animation loops back to the first frame, or if `stopAtEnd` is enabled, when it normally loop back to the first frame.
+- `onReachedEnd` (function, optional) - a function to call when the animation reaches the last frame.
 - `reverse` (boolean, default=`false`) - whether the list of frames should be reversed after they are added.
 - `frames` (table) - a list of frames. Frames are tables with the form `{x1, y1, x2, y2, duration}`.
   - `x1` (number) - the leftmost frame to load (in frames, not pixels).
